@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // 引入 store 用於獲取 redux 中保存的狀態
 import store from "../../redux/store";
-
+import { createIncrementAction, createDecrementAction } from '../../redux/count_action'
 class Count extends Component {
   state = {
     // count: 0,
@@ -19,25 +19,23 @@ class Count extends Component {
   // }
   increment = () => {
     const { value } = this.selectNumber;
-    store.dispatch({ type: 'INCREMENT', data: Number(value) })
+    store.dispatch(createIncrementAction(Number(value)))
   };
   decrement = () => {
     const { value } = this.selectNumber;
-    store.dispatch({ type: 'DECREMENT', data: Number(value) })
+    store.dispatch(createDecrementAction(Number(value)))
   };
   incrementIfOdd = () => {
     const count = store.getState();
     const { value } = this.selectNumber;
     if (Number(count) % 2 === 0) return;
-    store.dispatch({ type: 'INCREMENT', data: Number(value) })
+    store.dispatch(createIncrementAction(Number(value)))
   };
   incrementAsync = () => {
     const count = store.getState();
     const { value } = this.selectNumber;
     setTimeout(() => {
-      this.setState({
-        count: count + Number(value),
-      });
+      store.dispatch(createIncrementAction(Number(value)))
     }, 500);
   };
   render() {
