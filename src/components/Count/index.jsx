@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import store from '../../redux/store'
+import { createIncrementAction, createDecrementAction } from '../../redux/count_action'
 
 class Index extends Component {
   constructor(props) {
@@ -9,18 +10,18 @@ class Index extends Component {
       // count: 0
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     store.subscribe(() => {
       this.setState({})
     })
   }
   increment = () => {
     const { value } = this.selectNumber.current
-    store.dispatch({ type: 'INCREMENT', data: Number(value) })
+    store.dispatch(createIncrementAction(Number(value)))
   }
   decrement = () => {
     const { value } = this.selectNumber.current
-    store.dispatch({type: 'DECREMENT' , data: Number(value)})
+    store.dispatch(createDecrementAction(Number(value)))
   }
   incrementIfOdd = () => {
     const { value } = this.selectNumber.current
