@@ -3,8 +3,9 @@
  */
 
 // 引入 createStore 專門用於創建 redux 中最為核心的 state 對象
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import countReducer from "./count_reducer";
+import thunk from 'redux-thunk';
 
 // 輸出 store
-export default createStore(countReducer);
+export default createStore(countReducer,applyMiddleware(thunk));

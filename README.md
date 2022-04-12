@@ -19,6 +19,9 @@
         type: 標示屬性，值為字符串，唯一，必要屬性
         data: 數據類型，值為任意類型，可選屬性
     3. 例子：{type: 'ADD_STUDENT', data: {name: 'Tom', age: 18}}
+    4. 有分同步＆異步
+        1. 同步：同步 action ，就是指 action 的值為對象
+        2. 異步：異步 action ，就是指 action 的值為函數
 
 #### reducer
 
@@ -28,3 +31,13 @@
 #### store
 
     1. 將 state, action, reducer 聯繫在一起的對象
+
+## Redux 異步action版
+
+    1. 明確：延遲的動作不想交給組件自身，想交給action
+    2. 何時需要異步action：想要對狀態進行操作，但是具體的數據靠異步任務返回
+    3. 具體編碼：
+        1) 安裝redux-thunk並配置在store中
+        2) 創建action的函數不再返回一般對象而是一個函數，該函數中寫異步任務
+        3) 異步任務有結果後，分發一個同步的action去真正操作數據
+    4. 備註：異步action不是必須要寫的，完全可以自己等待異步任務的結果再去分發同步action

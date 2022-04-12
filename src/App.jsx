@@ -1,4 +1,4 @@
-import Count from "./comonents/Count";
+import Count from "./components/Count";
 
 function App() {
   return (

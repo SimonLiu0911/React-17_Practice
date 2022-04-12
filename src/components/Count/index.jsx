@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // 引入 store 用於獲取 redux 中保存的狀態
 import store from "../../redux/store";
-import { createIncrementAction, createDecrementAction } from '../../redux/count_action'
+import { createIncrementAction, createDecrementAction, createIncrementAsyncAction } from '../../redux/count_action'
 class Count extends Component {
   state = {
     // count: 0,
@@ -34,9 +34,9 @@ class Count extends Component {
   incrementAsync = () => {
     const count = store.getState();
     const { value } = this.selectNumber;
-    setTimeout(() => {
-      store.dispatch(createIncrementAction(Number(value)))
-    }, 500);
+    // setTimeout(() => {
+      store.dispatch(createIncrementAsyncAction(Number(value), 500))
+    // }, 500);
   };
   render() {
     return (
