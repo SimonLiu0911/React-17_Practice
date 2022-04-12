@@ -4,13 +4,13 @@
  */
 
 const initState = 0;
-function countReducer(preState = initState, action) {
+export default function countReducer(preState = initState, action) {
   // 從 action 對象中獲取 type, data
   const { type, data } = action;
   switch (type) {
-    case "increment":
+    case "INCREMENT":
       return preState + data;
-    case "decrement":
+    case "DECREMENT":
       return preState - data;
     default:
       return preState;
