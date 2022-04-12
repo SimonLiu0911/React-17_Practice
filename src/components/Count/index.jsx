@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 // 引入 store 用於獲取 redux 中保存的狀態
 import store from "../../redux/store";
-import { createIncrementAction, createDecrementAction, createIncrementAsyncAction } from '../../redux/count_action'
+import {
+  createIncrementAction,
+  createDecrementAction,
+  createIncrementAsyncAction,
+} from "../../redux/count_action";
 class Count extends Component {
   state = {
     // count: 0,
@@ -19,29 +23,32 @@ class Count extends Component {
   // }
   increment = () => {
     const { value } = this.selectNumber;
-    store.dispatch(createIncrementAction(Number(value)))
+    // store.dispatch(createIncrementAction(Number(value)));
+	this.props.jia(Number(value))
   };
   decrement = () => {
     const { value } = this.selectNumber;
-    store.dispatch(createDecrementAction(Number(value)))
+    // store.dispatch(createDecrementAction(Number(value)));
+	this.props.jian(Number(value))
   };
   incrementIfOdd = () => {
-    const count = store.getState();
     const { value } = this.selectNumber;
-    if (Number(count) % 2 === 0) return;
-    store.dispatch(createIncrementAction(Number(value)))
+    if (this.props.count % 2 === 0) return;
+    // store.dispatch(createIncrementAction(Number(value)));
+	this.props.jia(Number(value))
   };
   incrementAsync = () => {
-    const count = store.getState();
     const { value } = this.selectNumber;
     // setTimeout(() => {
-      store.dispatch(createIncrementAsyncAction(Number(value), 500))
+    // store.dispatch(createIncrementAsyncAction(Number(value), 500));
+	this.props.jiaAsync(Number(value), 500)
     // }, 500);
   };
   render() {
+    const { count } = this.props;
     return (
       <div>
-        <h1>當其求和為: {store.getState()}</h1>
+        <h1>當其求和為: {count}</h1>
         <select ref={(c) => (this.selectNumber = c)}>
           <option value="1">1</option>
           <option value="2">2</option>

@@ -32,7 +32,7 @@
 
     1. 將 state, action, reducer 聯繫在一起的對象
 
-## Redux 異步action版
+## Redux 異步 action 版
 
     1. 明確：延遲的動作不想交給組件自身，想交給action
     2. 何時需要異步action：想要對狀態進行操作，但是具體的數據靠異步任務返回
@@ -41,3 +41,14 @@
         2) 創建action的函數不再返回一般對象而是一個函數，該函數中寫異步任務
         3) 異步任務有結果後，分發一個同步的action去真正操作數據
     4. 備註：異步action不是必須要寫的，完全可以自己等待異步任務的結果再去分發同步action
+
+## react-redux 基本使用
+
+    1. 明確兩個概念：
+        1) UI組件：不能使用任何redux的api，只負責頁面的呈現、交互等
+        2) 容器組件：負責和redux通信，將結果交給UI組件
+    2. 如何創建一個容器組件--靠react-redux的connect函數
+        connect(mapStateToProps, mapDispatchToProps)(UI組件)
+            -mapStateToProps: 映射狀態，返回值是一個對象
+            -mapDispatchToProps: 又射操作狀態的方法，返回值是一個對象
+    3. 備註： 容器組件中的store是靠props傳進去的，而不是在容器組件中直接引入
