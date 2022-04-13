@@ -95,3 +95,8 @@
     2. store中進行配置
         import { composeWithDevTools } from 'redux-devtools-extension'
         const store = createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)))
+
+### react-redux 最終版
+
+    1. 所有變量名字要規範，儘量觸發對象的簡寫形式
+    2. reducers文件夾中，編寫index.js專用於彙總非輸出的所有reducer
