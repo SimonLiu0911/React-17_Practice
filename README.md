@@ -53,3 +53,17 @@
             -mapDispatchToProps: 又射操作狀態的方法，返回值是一個對象
     3. 備註1：容器組件中的store是靠props傳進去的，而不是在容器組件中直接引入
     4. 備註2：mapDispatchToProps，也可以是一個對象
+
+## react-redux優化
+
+    1. 容器組件和UI組件整合成一個文件
+    2. 無需自己給容器組件傳遞store，給<App />包裹一個<Provider store={store}>即可
+    3. 使用了react-redux後，不用再自己檢測redux狀態的改變，容器組件可以自動完成這項工作
+    4. mapDispatchToProps也可以簡單地寫成一個對象
+    5. 一個組件要和redux打交道，需要經過以下步驟：
+        a. 定義好UI組件
+        b. 引入connect生成一個容器組件並export
+            ex: connect(
+                state: {key: value}, // 映射狀態
+                {key: xxxAction}  // 映射操作狀態的方法
+            )(UI組件)
