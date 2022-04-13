@@ -54,7 +54,7 @@
     3. 備註1：容器組件中的store是靠props傳進去的，而不是在容器組件中直接引入
     4. 備註2：mapDispatchToProps，也可以是一個對象
 
-## react-redux優化
+## react-redux 優化
 
     1. 容器組件和UI組件整合成一個文件
     2. 無需自己給容器組件傳遞store，給<App />包裹一個<Provider store={store}>即可
@@ -67,3 +67,31 @@
                 state: {key: value}, // 映射狀態
                 {key: xxxAction}  // 映射操作狀態的方法
             )(UI組件)
+
+## 求和案例 react-redux 數據共享版
+
+    1. 定義一個Person組件，和Count組件通過redux共享數據
+    2. 為Person組件編寫：reducer, action, 配置constant常量
+    3. 重點：Person的reducer和Count的Reducer要使用combineReducers進行合併，合併後的總狀態是一個對象
+    4. 交給store的是總reducer，最後注意在組件中取出狀態的時候，記得"取到位"
+
+### 純函數與高階函數
+
+    1. 純函數
+        1) 一類特別的函數：只要是同樣的輸入(實參)，必定得到同樣的輸出(返回)
+        2) 必須遵守以下一些約束
+            a. 不得改寫參數數據
+            b. 不會產生任何副作用，例如網路請求, 輸入和輸出設備
+            c. 不能調用 Date.now()或者Math.random()等不純的方法
+        3) redux的reducer函數必須是一個純函數!!
+    2. 高階函數
+        1) 理解：一類特別的函數
+            a. 情況1：參數是函數
+            b. 情況2：返回是函數
+
+### react-redux 開發者工具的使用
+
+    1. npm i redux-devtools-extension
+    2. store中進行配置
+        import { composeWithDevTools } from 'redux-devtools-extension'
+        const store = createStore(allReducer, composeWithDevTools(applyMiddleware(thunk)))

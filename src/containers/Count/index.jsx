@@ -4,7 +4,7 @@ import {
   createIncrementAction,
   createDecrementAction,
   createIncrementAsyncAction,
-} from "../../redux/action/count";
+} from "../../redux/actions/count";
 
 // UI組件
 class Count extends Component {
@@ -48,7 +48,7 @@ class Count extends Component {
 
 // 容器組件
 const container = connect(
-  (state) => ({ count: state.he, person: state.rens }),
+  (state) => ({ count: state.count, person: state.persons }),
   {
     jia: createIncrementAction,
     jian: createDecrementAction,

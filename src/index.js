@@ -4,9 +4,10 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import store from "./redux/store";
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux";
 
 ReactDOM.render(
+  // 此處需要使用Provider包裹App，目的是讓App所有的後代容器組件都能接收到store
   <Provider store={store}>
     <App />
   </Provider>,

@@ -7,12 +7,17 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import countReducer from "./reducers/count";
 import personReducer from "./reducers/person";
 import thunk from "redux-thunk";
+// 引入 redux-devtools-extension
+import { composeWithDevTools } from "redux-devtools-extension";
 
-// 匯總所有的reducer變為一個總的reducer
+// 彙總所有的reducer變為一個總的reducer
 const allReducer = combineReducers({
-  he: countReducer,
-  rens: personReducer,
+  count: countReducer,
+  persons: personReducer,
 });
 
 // 輸出 store
-export default createStore(allReducer, applyMiddleware(thunk));
+export default createStore(
+  allReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
