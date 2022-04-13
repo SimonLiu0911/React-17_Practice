@@ -3,9 +3,16 @@
  */
 
 // 引入 createStore 專門用於創建 redux 中最為核心的 state 對象
-import { createStore, applyMiddleware } from "redux";
-import countReducer from "./count_reducer";
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware, combineReducers } from "redux";
+import countReducer from "./reducers/count";
+import personReducer from "./reducers/person";
+import thunk from "redux-thunk";
+
+// 匯總所有的reducer變為一個總的reducer
+const allReducer = combineReducers({
+  he: countReducer,
+  rens: personReducer,
+});
 
 // 輸出 store
-export default createStore(countReducer,applyMiddleware(thunk));
+export default createStore(allReducer, applyMiddleware(thunk));
