@@ -7,7 +7,7 @@ import {
   createIncrementAction,
   createDecrementAction,
   createIncrementAsyncAction,
-} from "../../redux/count_action";
+} from "../../redux/actions/count";
 
 /**
  * 1. mapStateToProps函數的返回的是一個對象
@@ -80,6 +80,7 @@ class Count extends Component {
     const { count } = this.props;
     return (
       <div>
+        <h2>我是Count組件</h2>
         <h1>當其求和為: {count}</h1>
         <select ref={(c) => (this.selectNumber = c)}>
           <option value="1">1</option>
