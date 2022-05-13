@@ -1,4 +1,4 @@
-import Count from "../src/components/Count/Count.jsx"
+import Count from "../src/components/Count/Count.jsx";
 
 function App() {
   return (
