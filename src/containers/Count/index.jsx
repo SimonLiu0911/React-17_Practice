@@ -1,5 +1,5 @@
-// 引入Count的UI組件
-import CountUI from "../../components/Count/Count";
+import React, { useState } from "react";
+import store from "../../redux/store";
 
 import {
   createIncrementAction,
@@ -7,47 +7,70 @@ import {
   createIncrementAsyncAction,
 } from "../../redux/count_action";
 
-// 引入connect用於連結UI組件與redux
 import { connect } from "react-redux";
 
-/**
- * 1. mapStateToProps返回的是一個對象
- * 2. 返回的對象中的key就作為傳遞給UI組件props的key，value就作為傳遞給UI組件props的value
- * 3. mapStateToProps用於傳遞狀態
- */
-// function mapStateToProps(count) {
-//   return { count };
-// }
-// optimize
-const mapStateToProps = (count) => ({ count });
+const Count = (props) => {
+  const [selectNumber, setSelectNumber] = useState(1);
+  const count = store.getState();
 
-/**
- * 1. mapDispatchToProps函數返回的是一個對象
- * 2. 返回的對象中的key就作為傳遞給UI組件props的key，value就作為傳遞給UI組件props的value
- * 3. mapDispatchToProps用於傳遞操作狀態的方法
- */
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     incrementFn: (number) => dispatch(createIncrementAction(number)),
-//     decrementFn: (number) => dispatch(createDecrementAction(number)),
-//     incrementAsyncFn: (number, time) =>
-//       dispatch(createIncrementAsyncAction(number, time)),
-//   };
-// }
-// optimize
-const mapDispatchToProps = (dispatch) => ({
-  incrementFn: (number) => dispatch(createIncrementAction(number)),
-  decrementFn: (number) => dispatch(createDecrementAction(number)),
-  incrementAsyncFn: (number, time) => dispatch(createIncrementAsyncAction(number, time)),
-});
+  const handleSelectChange = (e) => {
+    setSelectNumber(Number(e.target.value));
+  };
+  const handleIncrement = () => {
+    // store.dispatch(createIncrementAction(selectNumber));
+    props.incrementFn(selectNumber);
+  };
+  const handleDecrement = () => {
+    if (count <= 0 || count < selectNumber) return;
+    // store.dispatch(createDecrementAction(selectNumber));
+    props.decrementFn(selectNumber);
+  };
+  const handleIncrementIfOdd = () => {
+    // const count = store.getState();
+    if (count % 2 === 0) return;
+    // store.dispatch(createIncrementAction(selectNumber));
+    props.incrementFn(selectNumber);
+  };
+  const handleIncrementAsync = () => {
+    // setTimeout(() => {
+    // store.dispatch(createIncrementAsyncAction(selectNumber, 500));
+    // }, 500);
+    props.incrementAsyncFn(selectNumber, 700);
+  };
+
+  return (
+    <div>
+      <h1>當前求和為: {props.count}</h1>
+      <select defaultValue={selectNumber} onChange={handleSelectChange}>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      &nbsp;
+      <button onClick={handleIncrement}>increment</button>&nbsp;
+      <button onClick={handleDecrement}>decrement</button>&nbsp;
+      <button onClick={handleIncrementIfOdd}>當前求和為奇數再加</button>&nbsp;
+      <button onClick={handleIncrementAsync}>異步加</button>
+    </div>
+  );
+};
+
+// const mapStateToProps = (count) => ({ count });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   incrementFn: (number) => dispatch(createIncrementAction(number)),
+//   decrementFn: (number) => dispatch(createDecrementAction(number)),
+//   incrementAsyncFn: (number, time) =>
+//     dispatch(createIncrementAsyncAction(number, time)),
+// });
 
 // 使用connect()()創建並輸出一個Count的容器組件
-// const CountContainer = connect(mapStateToProps, mapDispatchToProps)(CountUI);
+// const CountContainer = connect(mapStateToProps, mapDispatchToProps)(Count);
 // optimize
 const CountContainer = connect((count) => ({ count }), {
   incrementFn: createIncrementAction,
   decrementFn: createDecrementAction,
   incrementAsyncFn: createIncrementAsyncAction,
-})(CountUI);
+})(Count);
 
 export default CountContainer;
