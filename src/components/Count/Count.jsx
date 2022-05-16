@@ -7,7 +7,8 @@ import {
   createIncrementAsyncAction,
 } from "../../redux/count_action";
 
-const Count = () => {
+const Count = (props) => {
+  console.log(props);
   const [selectNumber, setSelectNumber] = useState(1);
   const count = store.getState();
 
@@ -15,26 +16,30 @@ const Count = () => {
     setSelectNumber(Number(e.target.value));
   };
   const handleIncrement = () => {
-    store.dispatch(createIncrementAction(selectNumber));
+    // store.dispatch(createIncrementAction(selectNumber));
+    props.incrementFn(selectNumber);
   };
   const handleDecrement = () => {
     if (count <= 0 || count < selectNumber) return;
-    store.dispatch(createDecrementAction(selectNumber));
+    // store.dispatch(createDecrementAction(selectNumber));
+    props.decrementFn(selectNumber);
   };
   const handleIncrementIfOdd = () => {
     // const count = store.getState();
     if (count % 2 === 0) return;
-    store.dispatch(createIncrementAction(selectNumber));
+    // store.dispatch(createIncrementAction(selectNumber));
+    props.incrementFn(selectNumber);
   };
   const handleIncrementAsync = () => {
     // setTimeout(() => {
-      store.dispatch(createIncrementAsyncAction(selectNumber, 500));
+    // store.dispatch(createIncrementAsyncAction(selectNumber, 500));
     // }, 500);
+    props.incrementAsyncFn(selectNumber, 700);
   };
 
   return (
     <div>
-      <h1>當前求和為: {store.getState()}</h1>
+      <h1>當前求和為: {props.count}</h1>
       <select defaultValue={selectNumber} onChange={handleSelectChange}>
         <option value="1">1</option>
         <option value="2">2</option>

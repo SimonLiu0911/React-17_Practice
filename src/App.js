@@ -1,9 +1,12 @@
-import Count from "../src/components/Count/Count.jsx";
+// 這是Count的容器Component
+import Count from "./containers/Count";
+
+import store from "./redux/store";
 
 function App() {
   return (
     <div className="App">
-      <Count></Count>
+      <Count store={store}></Count>
     </div>
   );
 }
