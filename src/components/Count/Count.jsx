@@ -8,7 +8,6 @@ import store from "../../redux/store";
 // } from "../../redux/count_action";
 
 const Count = (props) => {
-  console.log(props);
   const [selectNumber, setSelectNumber] = useState(1);
   const count = store.getState();
 

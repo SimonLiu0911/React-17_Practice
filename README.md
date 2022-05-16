@@ -25,18 +25,18 @@ constant.js 放置由於編碼疏忽寫錯 action 中的 type 值
 
 ## react-redux 模型
 
-    1. 所有 UI 容器都應該包裹一個容器組件，他們是父子關係
-    2. 容器組件是真正和redux打交道的，但裡面可以隨意地使用redux的api
+    1. 所有 UI 容器都應該包裹一個容器組件(wrapper component)，他們是父子關係
+    2. 容器組件(wrapper component)是真正和redux打交道的，但裡面可以隨意地使用redux的api
     3. UI組件中不能使用任何redux的api
-    4. 容器組件會傳給UI組件：(1)redux中所保存的狀態 (2)用於操作狀態的方法
+    4. 容器組件(wrapper component)會傳給UI組件：(1)redux中所保存的狀態 (2)用於操作狀態的方法
     5. 備註：容器UI傳遞：狀態、操作狀態的方法，均通過props傳遞
     基本使用
     1. 明確兩個概念：
         1) UI組件：不能使用任何redux的api，只負責頁面的呈現、交互等
-        2) 容器組件：負責和redux通信，將結果交給UI組件
-    2. 如何創建一個容器組件：靠react-redux的connect函數
+        2) 容器組件(wrapper component)：負責和redux通信，將結果交給UI組件
+    2. 如何創建一個容器組件(wrapper component)：靠react-redux的connect函數
         connect(mapStateToProps, mapDispatchToProps)(UI組件)
         mapStateToProps：映射狀態，返回值是一個對象
         mapDispatchToProps：映射操作狀態的方法，返回值是一個對象
-    3. 備註一：容器組件中的store是靠props傳遞進去的，而不是在容器組件中直接引入
+    3. 備註一：容器組件(wrapper component)中的store是靠props傳遞進去的，而不是在容器組件(wrapper component)中直接引入
     4. 備註二：mapDispatchToProps也可以是一個對象

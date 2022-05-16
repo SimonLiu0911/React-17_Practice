@@ -11,15 +11,15 @@ import {
 import { connect } from "react-redux";
 
 /**
- * 1. mapStateztoProps返回的是一個對象
+ * 1. mapStateToProps返回的是一個對象
  * 2. 返回的對象中的key就作為傳遞給UI組件props的key，value就作為傳遞給UI組件props的value
- * 3. mapStateztoProps用於傳遞狀態
+ * 3. mapStateToProps用於傳遞狀態
  */
-// function mapStateztoProps(count) {
+// function mapStateToProps(count) {
 //   return { count };
 // }
 // optimize
-const mapStateztoProps = (count) => ({ count });
+const mapStateToProps = (count) => ({ count });
 
 /**
  * 1. mapDispatchToProps函數返回的是一個對象
@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 // 使用connect()()創建並輸出一個Count的容器組件
-// const CountContainer = connect(mapStateztoProps, mapDispatchToProps)(CountUI);
+// const CountContainer = connect(mapStateToProps, mapDispatchToProps)(CountUI);
 // optimize
 const CountContainer = connect((count) => ({ count }), {
   incrementFn: createIncrementAction,
