@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 // 引入store來獲取redux中的狀態
 import store from "../../redux/store";
-import {
-  createIncrementAction,
-  createDecrementAction,
-  createIncrementAsyncAction,
-} from "../../redux/count_action";
+// import {
+//   createIncrementAction,
+//   createDecrementAction,
+//   createIncrementAsyncAction,
+// } from "../../redux/count_action";
 
 const Count = (props) => {
   console.log(props);
