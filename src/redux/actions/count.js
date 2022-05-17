@@ -2,7 +2,7 @@
  * 該文件專門為count組件生成action對象
  */
 
-import { INCREMENT, DECREMENT } from "./constant";
+import { INCREMENT, DECREMENT } from "../constant";
 // import store from "./store";
 
 export const createIncrementAction = (data) => ({ type: INCREMENT, data });

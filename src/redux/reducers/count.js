@@ -4,7 +4,7 @@
  */
 
 // 在reducer只管基本的操作，其他判斷不要在這做，例如奇數再加，就要在前面先判對好是不是奇數
-import { INCREMENT, DECREMENT } from "./constant";
+import { INCREMENT, DECREMENT } from "../constant";
 
 const initCount = 0;
 export default function countReducer(preState = initCount, action) {
