@@ -47,18 +47,16 @@ const Count = (props) => {
         <button onClick={handleIncrementAsync}>異步加</button>
       </div>
       <div>
-        <p>
-          person組件的列表:
-          <ul>
-            {props.personData.map((person, index) => {
-              return (
-                <li key={index}>
-                  {person.personName} - {person.personAge}
-                </li>
-              );
-            })}
-          </ul>
-        </p>
+        <p>person組件的列表:</p>
+        <ul>
+          {props.personData.map((person, index) => {
+            return (
+              <li key={index}>
+                {person.personName} - {person.personAge}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
   );
