@@ -40,3 +40,11 @@ constant.js 放置由於編碼疏忽寫錯 action 中的 type 值
         mapDispatchToProps：映射操作狀態的方法，返回值是一個對象
     3. 備註一：容器組件(wrapper component)中的store是靠props傳遞進去的，而不是在容器組件(wrapper component)中直接引入
     4. 備註二：mapDispatchToProps也可以是一個對象
+
+## 數據共享版
+
+    1. 定義一個Person組件，和Count組件通過redux共享數據
+    2. 為Person組件編寫：reducer, action, 配置constant常量
+    3. 重點：
+        Person 的 reducer 和 Count 的 reducer 要使用 combineReducers 進行合併，合併後的總狀態是一個對象
+    4. 交給 store 的是總 reducer，最後注意在組件中取出狀態的時候，記得“取到位”
